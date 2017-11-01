@@ -68,6 +68,7 @@ module CollectiveIdea #:nodoc:
         before_save    :store_new_parent
         after_save     :move_to_new_parent, :set_depth!
         before_destroy :destroy_descendants
+        before_destroy :destroy_descendants unless acts_as_nested_set_options[:skip_destroy_descandants]
 
         define_model_callbacks :move
       end
